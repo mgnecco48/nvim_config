@@ -1,3 +1,0 @@
-return{
-    {'iruzo/matrix-nvim',}
-}

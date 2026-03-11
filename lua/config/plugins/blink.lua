@@ -7,7 +7,11 @@ return {
     version = "1.*",
 
     opts = {
-      keymap = { preset = "super-tab" },
+      keymap = {
+        preset = "super-tab",
+        ["<Tab>"] = { "select_and_accept", "fallback" },
+        ["<Enter>"] = { "select_and_accept", "fallback" },
+      },
 
       appearance = {
         nerd_font_variant = "mono",
@@ -38,14 +42,18 @@ return {
                 end,
               },
             },
-            columns = { { "label", gap = 1 }, { "kind_icon", gap = 1, "kind" }, { "source_name" } },
+            columns = { { "kind_icon", gap = 1, "label" }, { "kind" }, { "source_name" } },
           },
         },
         documentation = { auto_show = false },
+        signature = { enable = true },
       },
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
       },
+
+      signature = { enabled = true },
+
       fuzzy = { implementation = "lua" },
     },
     opts_extend = { "sources.default" },

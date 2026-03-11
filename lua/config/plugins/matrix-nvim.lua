@@ -1,0 +1,57 @@
+return {
+  -- {
+  --   "iruzo/matrix-nvim",
+  --   priority = 1000,
+  --   config = function()
+  --     -- vim.cmd("colorscheme matrix")
+  --     vim.api.nvim_set_hl(0, "Pmenu", { bg = "none", fg = "none" })
+  --     vim.api.nvim_set_hl(0, "PmenuExtra", { bg = "none" })
+  --     vim.api.nvim_set_hl(0, "PmenuKind", { bg = "none" })
+  --     vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#3c3836" })
+  --     vim.api.nvim_set_hl(0, "BlinkCmpScrollBarThumb", { bg = "#ffbf00" })
+  --
+  --     -- ======================
+  --     -- Base UI (matrix green)
+  --     -- ======================
+  --     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  --     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+  --     vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+  --     -- ======================
+  --     -- Functions (yellow)
+  --     -- ======================
+  --     vim.api.nvim_set_hl(0, "Function", { fg = "#FEFB53" })
+  --     vim.api.nvim_set_hl(0, "@function", { fg = "#FEFB53" })
+  --     vim.api.nvim_set_hl(0, "@method", { fg = "#FEFB53" })
+  --
+  --     -- ======================
+  --     -- Keywords & Logic (purple)
+  --     -- Python keywords + operators: def, return, for, in, and, or, not
+  --     -- ======================
+  --     vim.api.nvim_set_hl(0, "Keyword", { fg = "#B983FF" })
+  --     vim.api.nvim_set_hl(0, "Statement", { fg = "#B983FF" })
+  --     vim.api.nvim_set_hl(0, "Repeat", { fg = "#B983FF" })
+  --     vim.api.nvim_set_hl(0, "Operator", { fg = "#B983FF" })
+  --     vim.api.nvim_set_hl(0, "Include", { fg = "#B983FF" })
+  --     vim.api.nvim_set_hl(0, "@keyword", { fg = "#B983FF" })
+  --     vim.api.nvim_set_hl(0, "Conditional", { fg = "#B983FF" })
+  --     vim.api.nvim_set_hl(0, "Exception", { fg = "#B983FF" })
+  --     -- ======================
+  --     -- Structure (white)
+  --     -- Commas, parentheses, dots, etc.
+  --     -- ======================
+  --     vim.api.nvim_set_hl(0, "Delimiter", { fg = "#FFFFFF" })
+  --
+  --     -- ======================
+  --     -- Types / Classes (subtle green)
+  --     -- ======================
+  --     vim.api.nvim_set_hl(0, "@type", { fg = "#7AFF7A" })
+  --
+  --     -- ======================
+  --     -- LSP reference overrides (CRITICAL)
+  --     -- ======================
+  --     vim.api.nvim_set_hl(0, "LspReferenceRead", { fg = "#FEFB53" })
+  --     vim.api.nvim_set_hl(0, "LspReferenceWrite", { fg = "#FEFB53" })
+  --     vim.api.nvim_set_hl(0, "LspReferenceText", { fg = "#FEFB53" })
+  --   end,
+  -- },
+}

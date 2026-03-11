@@ -1,35 +1,27 @@
 -- ====================
 -- MARTIN GNECCO CONFIG
 -- ====================
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
 -- plugins via 'lazy.nvim'
 require("config.lazy")
-
 -- background for different windows
 vim.g.have_nerd_font = true
 vim.opt.termguicolors = true
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
--- vim.api.nvim_set_hl(0, "Pmenu", { bg = "none" })
--- vim.api.nvim_set_hl(0, "PmenuExtra", { bg = "none" })
--- vim.api.nvim_set_hl(0, "PmenuKind", { bg = "none" })
--- vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#3c3836" })
--- vim.api.nvim_set_hl(0, "BlinkCmpScrollBarThumb", { bg = "#ffbf00" })
 
+--- Miscellaneous
 vim.o.number = true
 vim.o.relativenumber = true
-
+vim.o.showmode = false
 vim.o.undofile = true
+vim.o.signcolumn = "yes"
+vim.o.cursorline = true
 
 -- Syncs the system clipboard to Nvim's allowing to copy and paste to/from other
 vim.o.clipboard = "unnamedplus"
-
-vim.o.signcolumn = "yes"
-vim.o.cursorline = true
 
 -- making searching with '/' non-case sensitive
 vim.o.ignorecase = true
@@ -45,6 +37,13 @@ vim.keymap.set({ "i", "n" }, "<C-s>", "<Cmd>w<CR>")
 vim.keymap.set({ "i", "n" }, "<C-e>", "<Cmd>q<CR>")
 vim.keymap.set("n", "<space>x", ":.lua<CR>")
 vim.keymap.set("v", "<space>x", ":lua<CR>")
+vim.keymap.set("n", "<leader>-", ":Ex<CR>")
+
+---- Resizing Splits
+vim.keymap.set("n", "<C-.>", "<cmd>vertical resize +5<CR>")
+vim.keymap.set("n", "<C-,>", "<cmd>vertical resize -5<CR>")
+vim.keymap.set("n", "<C-Up>", "<cmd>resize +3<CR>")
+vim.keymap.set("n", "<C-Down>", "<cmd>resize -3<CR>")
 
 ---- Moving inbetween nvim windows.
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
@@ -54,6 +53,11 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 
 ---- Escaping the terminal with an easy bind
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+
+---- Diagnostics
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 
 ----
 vim.opt.expandtab = true
@@ -71,14 +75,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("highlighting-yank", { clear = true }),
   callback = function()
     vim.hl.on_yank()
-  end,
-})
-
--- Starting treesitter highlighting for certain filetypes
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "lua", "python" },
-  callback = function()
-    vim.treesitter.start()
   end,
 })
 
