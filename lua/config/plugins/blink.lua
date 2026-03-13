@@ -23,39 +23,38 @@ return {
           border = nil,
           draw = {
             components = {
-              kind_icon = {
-                text = function(ctx)
-                  local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
-                  return kind_icon
-                end,
-                -- (optional) use highlights from mini.icons
-                highlight = function(ctx)
-                  local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-                  return hl
-                end,
-              },
-              kind = {
-                -- (optional) use highlights from mini.icons
-                highlight = function(ctx)
-                  local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-                  return hl
-                end,
-              },
+              --   kind_icon = {
+              --     text = function(ctx)
+              --       local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+              --       return kind_icon
+              --     end,
+              --     -- (optional) use highlights from mini.icons
+              --     highlight = function(ctx)
+              --       local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+              --       return hl
+              --     end,
+              --   },
+              --   kind = {
+              --     -- (optional) use highlights from mini.icons
+              --     highlight = function(ctx)
+              --       local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+              --       return hl
+              --     end,
+              --   },
             },
-            columns = { { "kind_icon", gap = 1, "label" }, { "kind" }, { "source_name" } },
+            columns = { { "kind_icon", "label", gap = 1 }, { "kind" }, { "source_name" } },
           },
         },
         documentation = { auto_show = false },
-        signature = { enable = true },
       },
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
       },
 
-      signature = { enabled = true },
-
+      signature = { enable = true },
       fuzzy = { implementation = "lua" },
     },
+
     opts_extend = { "sources.default" },
   },
 }

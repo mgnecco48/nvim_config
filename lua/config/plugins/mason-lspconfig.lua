@@ -14,7 +14,7 @@ return {
         "marksman",
         "taplo",
         "hyprls",
-        "vim",
+        "vimls",
       },
     },
     dependencies = {
