@@ -1,5 +1,10 @@
 local ls = require("luasnip")
 
+ls.config.setup({
+  region_check_events = { "CursorMoved", "CursorMovedI" },
+  delete_check_events = { "TextChanged", "TextChangedI" },
+})
+
 -- Active helpers used by the snippets below.
 local s = ls.snippet
 local i = ls.insert_node

@@ -1,0 +1,19 @@
+# OS clutter
+.DS_Store
+Thumbs.db
+
+# Editor swap/backup files
+*.swp
+*.swo
+*~
+
+# Local Neovim runtime/cache artifacts
+.netrwhist
+shada
+shada.tmp
+spell/*.add.spl
+
+# Local-only machine overrides
+local.lua
+lua/local.lua
+lua/config/local.lua
