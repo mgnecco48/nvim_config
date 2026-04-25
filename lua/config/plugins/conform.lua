@@ -37,6 +37,8 @@ return {
 
       -- Dockerfile
       dockerfile = { "hadolint" },
+
+      java = { "google-java-format" },
     },
   },
 

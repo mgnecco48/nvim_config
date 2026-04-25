@@ -15,6 +15,8 @@ return {
         "taplo",
         "hyprls",
         "vimls",
+        "gopls",
+        "jdtls",
       },
     },
     dependencies = {

@@ -20,6 +20,7 @@ return {
       "sqlls",
       "hyprls",
       "vimls",
+      "gopls",
 
       -- formatters
       "black",
@@ -30,10 +31,13 @@ return {
       "jq",
       "yamlfmt",
       "prettier",
+      "goimports",
+      "google-java-format",
 
       -- linters
       "shellcheck",
       "sqlfluff",
+      "golangci-lint",
     },
 
     auto_update = false,

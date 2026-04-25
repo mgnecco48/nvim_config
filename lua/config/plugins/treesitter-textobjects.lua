@@ -40,6 +40,16 @@ return {
           ["[c"] = "@class.outer",
         },
       },
+      swap = {
+        enable = true,
+        -- Keymaps to swap next/previous
+        swap_next = {
+          ["<leader>sa"] = "@parameter.inner", -- Swap next parameter
+        },
+        swap_previous = {
+          ["<leader>sA"] = "@parameter.inner", -- Swap previous parameter
+        },
+      },
     },
   },
 }

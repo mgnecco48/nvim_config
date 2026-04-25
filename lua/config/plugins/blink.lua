@@ -2,15 +2,27 @@ return {
   {
     "saghen/blink.cmp",
     -- optional: provides snippets for the snippet source
-    dependencies = { "rafamadriz/friendly-snippets" },
-
+    dependencies = {
+      {
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        -- install jsregexp (optional!).
+        build = "make install_jsregexp",
+      },
+      {
+        "rafamadriz/friendly-snippets",
+        config = function()
+          require("luasnip.loaders.from_vscode").lazy_load()
+        end,
+      },
+    },
     version = "1.*",
-
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
     opts = {
       keymap = {
-        preset = "super-tab",
-        ["<Tab>"] = { "select_and_accept", "fallback" },
-        ["<Enter>"] = { "select_and_accept", "fallback" },
+        preset = "default",
       },
 
       appearance = {
@@ -22,36 +34,24 @@ return {
         menu = {
           border = nil,
           draw = {
-            components = {
-              --   kind_icon = {
-              --     text = function(ctx)
-              --       local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
-              --       return kind_icon
-              --     end,
-              --     -- (optional) use highlights from mini.icons
-              --     highlight = function(ctx)
-              --       local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-              --       return hl
-              --     end,
-              --   },
-              --   kind = {
-              --     -- (optional) use highlights from mini.icons
-              --     highlight = function(ctx)
-              --       local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-              --       return hl
-              --     end,
-              --   },
-            },
             columns = { { "kind_icon", "label", gap = 1 }, { "kind" }, { "source_name" } },
           },
         },
         documentation = { auto_show = false },
       },
+      snippets = { preset = "luasnip" },
       sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
+        default = { "snippets", "lsp", "dadbod", "path", "buffer" },
+        -- per_filetype = {
+        --   sql = { "snippets", "dadbod", "buffer" },
+        --   mysql = { "snippets", "dadbod", "buffer" },
+        --   psql = { "snippets", "dadbod", "buffer" },
+        -- },
+        providers = {
+          dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+        },
       },
 
-      signature = { enable = true },
       fuzzy = { implementation = "lua" },
     },
 

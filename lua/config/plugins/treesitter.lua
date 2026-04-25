@@ -17,6 +17,8 @@ return {
         "bash",
         "zsh",
         "vim",
+        "go",
+        "java",
       }
       require("nvim-treesitter").setup({
         -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)

@@ -59,7 +59,9 @@ return {
         "marksman",
         "taplo",
         "hyprls",
-        "vim",
+        "vimls",
+        "gopls",
+        "jdtls",
       }
 
       --- adding blink capabilities to other servers.
