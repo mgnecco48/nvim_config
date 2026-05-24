@@ -23,7 +23,7 @@ vim.keymap.set("n", "<leader>rv", function()
     vim.cmd("vsplit | terminal javac " .. vim.fn.shellescape(file) .. " && java " .. vim.fn.shellescape(file_short))
     vim.cmd.startinsert()
   end
-end, { desc = "Run current file in terminal split" })
+end, { desc = "Run current file in vertical terminal split" })
 
 ---- Running a script in a terminal bottom split
 vim.keymap.set("n", "<leader>rb", function()
@@ -46,7 +46,7 @@ vim.keymap.set("n", "<leader>rb", function()
     vim.cmd("split | terminal javac " .. vim.fn.shellescape(file) .. " && java " .. vim.fn.shellescape(file_short))
     vim.cmd.startinsert()
   end
-end, { desc = "Run current file in terminal split" })
+end, { desc = "Run current file in horizontal terminal split" })
 
 --- Running buffer in floating window, currently just works for python, go and java
 vim.keymap.set("n", "<leader>rf", function()
@@ -140,7 +140,7 @@ end
 vim.api.nvim_create_user_command("FloaTerminal", toggle_terminal, {})
 
 ---- creating the keymap from the previously created function for toggle-ing a terminal window
-vim.keymap.set({ "n", "t" }, "<leader>tt", toggle_terminal)
+vim.keymap.set({ "n", "t" }, "<leader>tt", toggle_terminal, { desc = "Toggle floating terminal" })
 
 -- Opening NETRW in a small floating window
 
@@ -203,3 +203,10 @@ end, { desc = "open netrw in a floating window" })
 -- Easier Lazy commands
 vim.keymap.set("n", "<leader>lz", ":Lazy<CR>", { desc = "Open Lazy" })
 vim.keymap.set("n", "<leader>lu", ":Lazy update<CR>", { desc = "Update plugins with Lazy" })
+
+-- Notebook cell helpers for Jupytext markdown notebooks
+vim.keymap.set("n", "<leader>nc", function()
+  vim.api.nvim_put({ "", "```python", "", "```", "" }, "l", true, true)
+  vim.cmd("normal! 3k")
+  vim.cmd("startinsert")
+end, { desc = "New Python notebook cell" })

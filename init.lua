@@ -1,10 +1,15 @@
--- ====================
--- MARTIN GNECCO CONFIG
--- ====================
+-- ========================
+-- = MARTIN GNECCO CONFIG =
+-- ========================
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- plugins via 'lazy.nvim'
+-- Python host for Molten's remote plugin support.
+vim.g.python3_host_prog = "/opt/miniconda3/envs/nvim-jupyter/bin/python"
+-- this is specific to my machine, change it to the path of your Python 3 interpreter
+-- if you want to use Molten's Jupyter support.
+
+-- plugins are managed via 'lazy.nvim'
 require("config.lazy")
 
 -- background for different windows
@@ -35,7 +40,7 @@ vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 1
 vim.o.scrolloff = 10
 
--- Syncs the system clipboard to Nvim's allowing to copy and paste to/from other
+-- Syncs the system clipboard to Nvim's allowing to copy and paste to/from other applications
 vim.o.clipboard = "unnamedplus"
 
 -- Making searching with '/' non-case sensitive
@@ -43,38 +48,39 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- KEYMAPS
-require("config.special_keymaps") --- Separate file for keymaps complex keymaps that would make this config too messy
+require("config.special_keymaps") --- Separate file for complex keymaps that would make this config too messy
 
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
 
 -- Easier binds to write and quit, work best when the CAPS key has been changed to send CTRL
-vim.keymap.set({ "i", "n" }, "<C-s>", "<Cmd>w<CR>")
-vim.keymap.set({ "i", "n" }, "<C-e>", "<Cmd>q<CR>")
-vim.keymap.set({ "i", "n" }, "<C-1>", "<Cmd>q!<CR>")
+vim.keymap.set({ "i", "n" }, "<C-s>", "<Cmd>w<CR>", { desc = "Save file" })
+vim.keymap.set({ "i", "n" }, "<C-e>", "<Cmd>q<CR>", { desc = "Quit window" })
+vim.keymap.set({ "i", "n" }, "<C-1>", "<Cmd>q!<CR>", { desc = "Force quit window" })
 
 -- Sourcing the whole current file or a specific line. Very useful when experimenting with new config things
-vim.keymap.set("n", "<space>x", ":.lua<CR>")
-vim.keymap.set("v", "<space>x", ":lua<CR>")
+vim.keymap.set("n", "<space>x", ":.lua<CR>", { desc = "Source current Lua line" })
+vim.keymap.set("v", "<space>x", ":lua<CR>", { desc = "Source selected Lua" })
+vim.keymap.set("n", "<space>X", ":luafile %<CR>", { desc = "Source current Lua file" })
 
 -- Quick way to access Netrw, the native file manager
-vim.keymap.set("n", "<leader>-", ":Ex<CR>")
+vim.keymap.set("n", "<leader>-", ":Ex<CR>", { desc = "Open Netrw explorer" })
 
 ---- Resizing Splits
-vim.keymap.set("n", "<C-.>", "<cmd>vertical resize +5<CR>")
-vim.keymap.set("n", "<C-,>", "<cmd>vertical resize -5<CR>")
-vim.keymap.set("n", "<C-Up>", "<cmd>resize +3<CR>")
-vim.keymap.set("n", "<C-Down>", "<cmd>resize -3<CR>")
+vim.keymap.set("n", "<C-.>", "<cmd>vertical resize +5<CR>", { desc = "Increase split width" })
+vim.keymap.set("n", "<C-,>", "<cmd>vertical resize -5<CR>", { desc = "Decrease split width" })
+vim.keymap.set("n", "<C-Up>", "<cmd>resize +3<CR>", { desc = "Increase split height" })
+vim.keymap.set("n", "<C-Down>", "<cmd>resize -3<CR>", { desc = "Decrease split height" })
 
 ---- Moving inbetween nvim windows, easier than the default
-vim.keymap.set("n", "<C-h>", "<C-w>h")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left window" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right window" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to lower window" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to upper window" })
 
 ---- Escaping the terminal mode with an easy bind.
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
----- Diagnostics
+---- Diagnostics config.
 vim.diagnostic.config({
   virtual_text = {
     prefix = "▎",
@@ -90,16 +96,16 @@ vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = "#83a598", bg = "#1f3
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = "#8ec07c", bg = "#24351f" })
 vim.api.nvim_set_hl(0, "DiagnosticVirtualTextOk", { fg = "#b8bb26", bg = "#2f3418" })
 
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
+vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
 vim.keymap.set("n", "]d", function()
   vim.diagnostic.jump({ count = 1, float = true })
-end)
+end, { desc = "Next diagnostic" })
 vim.keymap.set("n", "[d", function()
   vim.diagnostic.jump({ count = -1, float = true })
-end)
+end, { desc = "Previous diagnostic" })
 
 --- Database work with Dadbod
-vim.keymap.set("n", "<leader>db", "<cmd>DBUIToggle<CR>")
+vim.keymap.set("n", "<leader>db", "<cmd>DBUIToggle<CR>", { desc = "Toggle database UI" })
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "dbout",
   callback = function()
@@ -108,7 +114,12 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 --- Resourcing Snippets file to play with new ones
-vim.keymap.set("n", "<leader>R", ":source ~/.config/nvim/lua/config/snippets.lua<CR>")
+vim.keymap.set(
+  "n",
+  "<leader>R",
+  ":source ~/.config/nvim/lua/config/snippets.lua<CR>",
+  { desc = "Reload snippets file" }
+)
 
 ----
 
@@ -128,3 +139,5 @@ require("config.snippets")
 -- Use ':Inspect' with the cursor on a word to see the highliting group,
 -- or ':InspectTree' for an "interactive" overview.
 vim.cmd([[hi @function.call.python guifg=yellow]])
+
+require("config.molten_config")

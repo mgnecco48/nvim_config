@@ -71,6 +71,27 @@ return {
         }
       end
 
+      local function python_path()
+        if vim.env.CONDA_PREFIX then
+          return vim.env.CONDA_PREFIX .. "/bin/python"
+        end
+
+        if vim.env.VIRTUAL_ENV then
+          return vim.env.VIRTUAL_ENV .. "/bin/python"
+        end
+
+        return vim.fn.exepath("python3") or vim.fn.exepath("python")
+      end
+
+      vim.lsp.config["pyright"] = {
+        capabilities = capabilities,
+        settings = {
+          python = {
+            pythonPath = python_path(),
+          },
+        },
+      }
+
       --- Special Lua Config recommended by Neovim
       vim.lsp.config["lua_ls"] = {
         cmd = { "lua-language-server" },
@@ -112,7 +133,7 @@ return {
       -- keymap for formating the file without saving
       vim.keymap.set("n", "<leader>g", function()
         vim.lsp.buf.format()
-      end)
+      end, { desc = "Format file" })
       -- configuring "Autocommands"
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("my.lsp", {}),
@@ -120,8 +141,8 @@ return {
           local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
           if
-              not client:supports_method("textDocument/willSaveWaitUntil")
-              and client:supports_method("textDocument/formatting")
+            not client:supports_method("textDocument/willSaveWaitUntil")
+            and client:supports_method("textDocument/formatting")
           then
             vim.api.nvim_create_autocmd("BufWritePre", {
               group = vim.api.nvim_create_augroup("my.lsp", { clear = false }),
