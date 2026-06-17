@@ -55,7 +55,6 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highl
 -- Easier binds to write and quit, work best when the CAPS key has been changed to send CTRL
 vim.keymap.set({ "i", "n" }, "<C-s>", "<Cmd>w<CR>", { desc = "Save file" })
 vim.keymap.set({ "i", "n" }, "<C-e>", "<Cmd>q<CR>", { desc = "Quit window" })
-vim.keymap.set({ "i", "n" }, "<C-1>", "<Cmd>q!<CR>", { desc = "Force quit window" })
 
 -- Sourcing the whole current file or a specific line. Very useful when experimenting with new config things
 vim.keymap.set("n", "<space>x", ":.lua<CR>", { desc = "Source current Lua line" })

@@ -1,12 +1,12 @@
-vim.opt_local.textwidth = 160             -- Set Markdown text wrapping width to 150 columns.
-vim.opt_local.colorcolumn = "160"         -- Show a visual guide at column 150.
-vim.opt_local.wrap = true                 -- Visually wrap long Markdown lines instead of scrolling horizontally.
-vim.opt_local.linebreak = true            -- Wrap lines at word boundaries rather than mid-word.
-vim.opt_local.breakindent = true          -- Preserve indentation on visually wrapped continuation lines.
-vim.opt_local.formatoptions:remove("l")   -- Allow formatting to affect lines longer than textwidth.
+vim.opt_local.textwidth = 160 -- Set Markdown text wrapping width to 150 columns.
+vim.opt_local.colorcolumn = "160" -- Show a visual guide at column 150.
+vim.opt_local.wrap = true -- Visually wrap long Markdown lines instead of scrolling horizontally.
+vim.opt_local.linebreak = true -- Wrap lines at word boundaries rather than mid-word.
+vim.opt_local.breakindent = true -- Preserve indentation on visually wrapped continuation lines.
+vim.opt_local.formatoptions:remove("l") -- Allow formatting to affect lines longer than textwidth.
 vim.opt_local.formatoptions:append("tqn") -- Enable auto-wrapping text, comment formatting, and numbered-list formatting.
-vim.opt_local.spell = true                -- Enable spell checking for Markdown buffers.
-
+vim.opt_local.spell = true -- Enable spell checking for Markdown buffers.
+vim.opt_local.scrolloff = 999
 ------------------------
 ---NOTEBOOK SPECIFIC ---
 ------------------------

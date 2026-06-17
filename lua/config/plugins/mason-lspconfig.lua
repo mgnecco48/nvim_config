@@ -17,6 +17,7 @@ return {
         "vimls",
         "gopls",
         "jdtls",
+        "vtsls",
       },
     },
     dependencies = {
