@@ -53,6 +53,10 @@ return {
       },
 
       fuzzy = { implementation = "lua" },
+      cmdline = {
+        keymap = { preset = "inherit" },
+        completion = { menu = { auto_show = true } },
+      },
     },
 
     opts_extend = { "sources.default" },

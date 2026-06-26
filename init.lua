@@ -79,6 +79,9 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to upper window" })
 ---- Escaping the terminal mode with an easy bind.
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
+---- Toggling Neotree
+vim.keymap.set("n", "<leader>-", "<cmd>Neotree toggle<CR>")
+
 ---- Diagnostics config.
 vim.diagnostic.config({
   virtual_text = {
